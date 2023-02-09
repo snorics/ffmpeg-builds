@@ -628,6 +628,9 @@ name_folder=$(echo ${ffmpeg_package_name} | cut -d "@" -f 2)
 wget -c ${ffmpeg_package}
 tar jxvf ${name_package}
 cd ${name_folder}
+wget -c https://raw.githubusercontent.com/runner365/srt_encoder/master/ffmpeg-5.1/fftools/ffmpeg.c
+wget -c https://raw.githubusercontent.com/runner365/srt_encoder/master/ffmpeg-5.1/fftools/ffmpeg_mux.c
+wget -c https://raw.githubusercontent.com/runner365/srt_encoder/master/ffmpeg-5.1/fftools/srt_header.h
 chmod +x configure
 PKG_CONFIG_PATH=${dir_build_libs}/lib/pkgconfig LD_LIBRARY_PATH=${dir_build_libs}/lib CC="${C_COMPILER}" CXX="${CXX_COMPILER}" ./configure --prefix="${dir_build}/usr" --extra-ldexeflags="-static" --pkg-config-flags="--static" --extra-cflags="-I${dir_build_libs}/include" --extra-ldflags="-L${dir_build_libs}/lib" --extra-libs="-lpthread -lm -lz" --extra-ldexeflags="-static" --enable-gpl --enable-nonfree --enable-version3 --disable-debug --disable-indev=sndio --disable-outdev=sndio --enable-fontconfig --enable-frei0r --enable-openssl --enable-libaom --enable-libfribidi --enable-libass --enable-libfreetype --enable-libmp3lame --enable-libopenjpeg --enable-libsoxr --enable-libspeex --enable-libvorbis --enable-libopus --enable-libtheora --enable-libvidstab --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libdav1d --enable-libxvid --enable-libfdk-aac --enable-ffplay --enable-pic
 build_error=$?
